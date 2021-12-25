@@ -1,2 +1,5 @@
 server:
-  port: 8181
+  port: 8184
+
+  servlet:
+    context-path: /test1
