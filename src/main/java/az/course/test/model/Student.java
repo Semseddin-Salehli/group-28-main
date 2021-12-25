@@ -1,17 +1,21 @@
-package az.developia.course.qrup28.model;
+package az.course.test.model;
 
 import lombok.AllArgsConstructor;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.stereotype.Component;
 
-@Getter
-@Setter
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Component
 public class Student {
+    private Long id;
     private String name;
     private String surname;
+    private String address;
+    private String phone;
+    private Integer age;
+    private String privateColumn;
 }

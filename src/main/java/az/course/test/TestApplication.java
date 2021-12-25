@@ -1,13 +1,16 @@
-package az.developia.course.qrup28;
+package az.course.test;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
-public class Qrup28Application {
+public class TestApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(Qrup28Application.class, args);
+        SpringApplication.run(TestApplication.class, args);
+
+
     }
 
 }

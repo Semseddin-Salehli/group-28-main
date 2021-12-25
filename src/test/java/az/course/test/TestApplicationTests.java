@@ -1,10 +1,10 @@
-package az.developia.course.qrup28;
+package az.course.test;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class Qrup28ApplicationTests {
+class TestApplicationTests {
 
     @Test
     void contextLoads() {
