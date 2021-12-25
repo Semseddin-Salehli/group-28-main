@@ -14,12 +14,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(StudentNotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handling(StudentNotFoundException exception, WebRequest request) {
-        ErrorResponse error = ErrorResponse.builder()
+        return ErrorResponse.builder()
                 .code(HttpStatus.NOT_FOUND.value())
                 .path(request.getContextPath())
                 .message(exception.getMessage())
                 .errorCode(ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode())
                 .build();
-        return error;
     }
 }

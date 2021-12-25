@@ -18,5 +18,4 @@ public class Student {
     private String phone;
     private Integer age;
     private String privateColumn;
-
 }

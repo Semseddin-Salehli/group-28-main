@@ -2,7 +2,7 @@ package az.course.test.controller;
 
 import az.course.test.dto.request.StudentRequest;
 import az.course.test.dto.response.StudentResponse;
-import az.course.test.service.StudentService;
+import az.course.test.service.imp.StudentServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,30 +13,30 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-    private final StudentService studentService;
+    private final StudentServiceImpl studentServiceImpl;
 
     @GetMapping
     public List<StudentResponse> getStudentList() {
-        return studentService.getStudentList();
+        return studentServiceImpl.getStudentList();
     }
 
     @GetMapping("/{id}")
     public StudentResponse getStudentById(@PathVariable("id") Long studentId) {
-        return studentService.getStudentById(studentId);
+        return studentServiceImpl.getStudentById(studentId);
     }
 
     @DeleteMapping("/{studentId}")
     public StudentResponse deleteStudent(@PathVariable("studentId") Long id) {
-        return studentService.deleteStudent(id);
+        return studentServiceImpl.deleteStudent(id);
     }
 
     @PostMapping()
     public Long addStudent(@RequestBody StudentRequest studentRequest) {
-        return studentService.addStudent(studentRequest);
+        return studentServiceImpl.addStudent(studentRequest);
     }
 
     @PutMapping()
     public StudentResponse updateStudent(@RequestBody StudentRequest studentRequest, @RequestParam("id") Long studentId) {
-        return studentService.updateStudent(studentRequest, studentId);
+        return studentServiceImpl.updateStudent(studentRequest, studentId);
     }
 }
