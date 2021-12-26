@@ -2,7 +2,8 @@ package az.course.test.controller;
 
 import az.course.test.dto.request.StudentRequest;
 import az.course.test.dto.response.StudentResponse;
-import az.course.test.service.StudentService;
+import az.course.test.service.StudentService2;
+import az.course.test.service.imp.StudentServiceImp;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,11 +14,13 @@ import java.util.List;
 @RequestMapping("/student")
 public class StudentController {
 
-    private final StudentService studentService;
+    private final StudentServiceImp studentService;
+    private final StudentService2 service2;
 
     @GetMapping
     public List<StudentResponse> getStudentList() {
-        return studentService.getStudentList();
+//        return studentService.getStudentList();
+        return service2.findAll();
     }
 
     @GetMapping("/{id}")
@@ -32,7 +35,8 @@ public class StudentController {
 
     @PostMapping()
     public Long addStudent(@RequestBody StudentRequest studentRequest) {
-        return studentService.addStudent(studentRequest);
+//        return studentService.addStudent(studentRequest);
+        return service2.addStudent(studentRequest);
     }
 
     @PutMapping()
