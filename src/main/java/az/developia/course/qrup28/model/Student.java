@@ -1,17 +1,21 @@
 package az.developia.course.qrup28.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import org.springframework.stereotype.Component;
+import lombok.*;
 
-@Getter
-@Setter
+import javax.persistence.*;
+
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
+@Entity
+@Table(name = "student")
 public class Student {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String surname;
+    private String address;
+    private String phone;
+    private Integer age;
 }
