@@ -3,7 +3,6 @@ package az.course.test.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -11,7 +10,6 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Component
 @Entity
 @Table(name = "student")
 public class Student {
@@ -23,5 +21,4 @@ public class Student {
     private String address;
     private String phone;
     private Integer age;
-    private String privateColumn;
 }
