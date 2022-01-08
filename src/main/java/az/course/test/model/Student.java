@@ -3,7 +3,6 @@ package az.course.test.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 
@@ -22,5 +21,4 @@ public class Student {
     private String address;
     private String phone;
     private Integer age;
-    private String privateColumn;
 }
