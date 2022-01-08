@@ -2,7 +2,7 @@ server:
   port: 8188
 
   servlet:
-    context-path: /test
+    context-path: /qrup28
 
 spring:
   datasource:
