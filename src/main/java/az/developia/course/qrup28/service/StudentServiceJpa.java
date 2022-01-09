@@ -11,4 +11,10 @@ public interface StudentServiceJpa {
 
     Long addStudent(StudentRequest studentRequest);
 
+    StudentResponse getStudentById(Long id);
+
+    StudentResponse updateStudent(StudentRequest studentRequest, Long studentId);
+
+    StudentResponse deleteStudent(Long studentId);
+
 }
