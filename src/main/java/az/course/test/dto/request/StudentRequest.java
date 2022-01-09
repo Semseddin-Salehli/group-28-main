@@ -21,4 +21,7 @@ public class StudentRequest {
 
     @NotNull
     private Integer age;
+
+    @NotNull
+    private SeriesRequest series;
 }

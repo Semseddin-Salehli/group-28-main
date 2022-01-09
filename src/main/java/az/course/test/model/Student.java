@@ -21,4 +21,8 @@ public class Student {
     private String address;
     private String phone;
     private Integer age;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "seriesId", referencedColumnName = "id")
+    private Series series;
 }
