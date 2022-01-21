@@ -3,6 +3,7 @@ package az.developia.course.qrup28.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,4 +23,13 @@ public class Student {
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "seriesId" , referencedColumnName = "id")
     private Series series;
+
+    @ManyToOne(cascade = {
+            CascadeType.PERSIST,
+            CascadeType.MERGE
+    })
+    private SchoolClass schoolClass;
+
+    @ManyToMany(mappedBy = "students" , fetch = FetchType.LAZY)
+    private List<Teacher> teachers;
 }

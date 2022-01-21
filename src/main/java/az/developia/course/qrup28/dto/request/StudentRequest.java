@@ -25,4 +25,7 @@ public class StudentRequest {
 
     @NotNull
     private SeriesRequest series;
+
+    @NotNull
+    private Long schoolClassId;
 }

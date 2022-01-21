@@ -1,4 +1,4 @@
-package az.developia.course.qrup28.controller;
+package az.developia.course.qrup28.web.rest;
 
 
 import az.developia.course.qrup28.dto.request.StudentRequest;
