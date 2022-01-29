@@ -20,7 +20,7 @@ public class Student {
     private String phone;
     private Integer age;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "seriesId" , referencedColumnName = "id")
     private Series series;
 

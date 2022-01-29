@@ -13,20 +13,20 @@ import javax.validation.ConstraintViolationException;
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ExceptionHandler(StudentNotFoundException.class)
+    @ExceptionHandler(NotFoundException.class)
     @ResponseStatus(HttpStatus.NOT_FOUND)
-    public ErrorResponse handling(StudentNotFoundException exception , WebRequest request) {
+    public ErrorResponse handling(NotFoundException exception, WebRequest request) {
         return ErrorResponse.builder()
                 .code(HttpStatus.NOT_FOUND.value())
                 .path(request.getContextPath())
                 .message(exception.getMessage())
-                .errorCode(ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode())
+                .errorCode(exception.getCode())
                 .build();
     }
 
     @ExceptionHandler(ConstraintViolationException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handling(ConstraintViolationException exception , WebRequest request) {
+    public ErrorResponse handling(ConstraintViolationException exception, WebRequest request) {
         return ErrorResponse.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .path(request.getContextPath())
@@ -35,25 +35,5 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
-    @ExceptionHandler(ClassNotFoundException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handling(ClassNotFoundException exception , WebRequest request) {
-        return ErrorResponse.builder()
-                .code(HttpStatus.BAD_REQUEST.value())
-                .path(request.getContextPath())
-                .message(exception.getMessage())
-                .errorCode(ExceptionCode.STUDENT_CLASS_NOT_FOUND.getCode())
-                .build();
-    }
 
-    @ExceptionHandler(TeacherNotFoundException.class)
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handling(TeacherNotFoundException exception , WebRequest request) {
-        return ErrorResponse.builder()
-                .code(HttpStatus.BAD_REQUEST.value())
-                .path(request.getContextPath())
-                .message(exception.getMessage())
-                .errorCode(ExceptionCode.TEACHER_CLASS_NOT_FOUND.getCode())
-                .build();
-    }
 }

@@ -15,7 +15,6 @@ import java.util.List;
 @Table(name = "class")
 @Getter
 @Setter
-
 public class SchoolClass {
 
     @Id

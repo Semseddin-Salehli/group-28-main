@@ -11,5 +11,7 @@ public interface TeacherService {
 
     Long add(TeacherRequest request);
 
-    TeacherResponse update(Long id , TeacherRequest request);
+    TeacherResponse update(Long id, TeacherRequest request);
+
+    Long delete(Long id);
 }

@@ -2,8 +2,8 @@ package az.developia.course.qrup28.service.impl;
 
 import az.developia.course.qrup28.dto.request.StudentRequest;
 import az.developia.course.qrup28.dto.response.StudentResponse;
-import az.developia.course.qrup28.exception.ClassNotFoundException;
-import az.developia.course.qrup28.exception.StudentNotFoundException;
+import az.developia.course.qrup28.enums.ExceptionCode;
+import az.developia.course.qrup28.exception.NotFoundException;
 import az.developia.course.qrup28.model.SchoolClass;
 import az.developia.course.qrup28.model.Series;
 import az.developia.course.qrup28.model.Student;
@@ -33,11 +33,16 @@ public class StudentServiceJpaImpl implements StudentServiceJpa {
     @Override
     public Long addStudent(StudentRequest studentRequest) {
         SchoolClass schoolClass = classRepository.findById(studentRequest.getSchoolClassId())
-                .orElseThrow(() -> new ClassNotFoundException("Bele bir sinif tapilmadi"));
+                .orElseThrow(() -> new NotFoundException(SchoolClass.class, studentRequest.getSchoolClassId(),
+                        ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));
+        ModelMapper modelMapper = new ModelMapper();
+
+        modelMapper.typeMap(StudentRequest.class, Student.class).addMappings(mp -> {
+            mp.skip(Student::setId);
+        });
 
         Student newStudent = modelMapper.map(studentRequest, Student.class);
         newStudent.setSchoolClass(schoolClass);
-
 
         return studentRepository.save(newStudent).getId();
     }
@@ -46,21 +51,24 @@ public class StudentServiceJpaImpl implements StudentServiceJpa {
     public StudentResponse getStudentById(Long id) {
         return studentRepository.findById(id)
                 .map(student -> modelMapper.map(student, StudentResponse.class))
-                .orElseThrow(() -> new StudentNotFoundException("Bele bir telebe tapilmadi."));
+                .orElseThrow(() -> new NotFoundException(Student.class, id,
+                        ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));
     }
 
     @Override
     public StudentResponse updateStudent(StudentRequest studentRequest, Long studentId) {
         SchoolClass schoolClass = classRepository.findById(studentRequest.getSchoolClassId())
-                .orElseThrow(() -> new ClassNotFoundException("Bele bir sinif tapilmadi"));
+                .orElseThrow(() -> new NotFoundException(SchoolClass.class, studentRequest.getSchoolClassId(),
+                        ExceptionCode.STUDENT_CLASS_NOT_FOUND.getCode()));
 
         Student dbStudent = studentRepository.findById(studentId)
-                .orElseThrow(() -> new StudentNotFoundException("Bele bir telebe tapilmadi."));
+                .orElseThrow(() -> new NotFoundException(Student.class, studentId,
+                        ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));
 
         Student newStudent = modelMapper.map(studentRequest, Student.class);
 
         Series dbSeries = dbStudent.getSeries();
-        modelMapper.map(studentRequest.getSeries() , dbSeries);
+        modelMapper.map(studentRequest.getSeries(), dbSeries);
 
         newStudent.setSeries(dbSeries);
         newStudent.setId(studentId);
@@ -75,7 +83,8 @@ public class StudentServiceJpaImpl implements StudentServiceJpa {
     @Override
     public StudentResponse deleteStudent(Long studentId) {
         Student dbStudent = studentRepository.findById(studentId)
-                .orElseThrow(() -> new StudentNotFoundException("Bele bir telebe tapilmadi."));
+                .orElseThrow(() -> new NotFoundException(Student.class, studentId,
+                        ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));
         studentRepository.delete(dbStudent);
         return modelMapper.map(dbStudent, StudentResponse.class);
     }

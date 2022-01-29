@@ -2,14 +2,13 @@ package az.developia.course.qrup28.service.impl;
 
 import az.developia.course.qrup28.dto.request.TeacherRequest;
 import az.developia.course.qrup28.dto.response.TeacherResponse;
-import az.developia.course.qrup28.exception.StudentNotFoundException;
-import az.developia.course.qrup28.exception.TeacherNotFoundException;
+import az.developia.course.qrup28.enums.ExceptionCode;
+import az.developia.course.qrup28.exception.NotFoundException;
 import az.developia.course.qrup28.model.Student;
 import az.developia.course.qrup28.model.Teacher;
 import az.developia.course.qrup28.repository.StudentRepository;
 import az.developia.course.qrup28.repository.TeacherRepository;
 import az.developia.course.qrup28.service.TeacherService;
-import io.swagger.models.Model;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -29,19 +28,22 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public List<TeacherResponse> getAll() {
         return teacherRepository.findAll().stream()
-                .map(teacher -> modelMapper.map(teacher , TeacherResponse.class))
+                .map(teacher -> modelMapper.map(teacher, TeacherResponse.class))
                 .collect(Collectors.toList());
     }
 
     @Override
     public Long add(TeacherRequest request) {
         List<Student> teacherStudents = new ArrayList<>();
-        for (Long id : request.getStudentIds()) {
 
-            teacherStudents.add(studentRepository.findById(id)
-                    .orElseThrow(() -> new StudentNotFoundException("Bele bir telebe tapilmadi" + id)));
-        }
-        Teacher teacher = modelMapper.map(request , Teacher.class);
+        request.getStudentIds().forEach(id ->
+                teacherStudents.add(studentRepository.findById(id)
+                        .orElseThrow(() -> new NotFoundException(Student.class,
+                                id,
+                                ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()))));
+
+
+        Teacher teacher = modelMapper.map(request, Teacher.class);
         teacher.setStudents(teacherStudents);
 
         return teacherRepository.save(teacher).getId();
@@ -51,19 +53,34 @@ public class TeacherServiceImpl implements TeacherService {
     public TeacherResponse update(Long id, TeacherRequest request) {
         List<Student> teacherStudents = new ArrayList<>();
 
-        Teacher dbTeacher = teacherRepository.findById(id)
-                .orElseThrow(() -> new TeacherNotFoundException("Bele bir muellim tapilmadi"));
+        teacherRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(Teacher.class, id,
+                        ExceptionCode.TEACHER_CLASS_NOT_FOUND.getCode()));
 
-        for (Long studentId : request.getStudentIds()) {
-            teacherStudents.add(studentRepository.findById(studentId)
-                    .orElseThrow(() -> new StudentNotFoundException("Bele bir telebe tapilmadi" + studentId)));
-        }
-        Teacher newTeacher = modelMapper.map(request , Teacher.class);
-        newTeacher.setId(id);
-        newTeacher.setStudents(teacherStudents);
-        modelMapper.map(newTeacher , dbTeacher);
-        teacherRepository.save(dbTeacher);
+        request.getStudentIds().forEach(studentId ->
+                teacherStudents.add(studentRepository.findById(studentId)
+                        .orElseThrow(() -> new NotFoundException(Student.class,
+                                studentId,
+                                ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()))));
+        Teacher newTeacher = Teacher.builder()
+                .id(id)
+                .name(request.getName())
+                .surname(request.getSurname())
+                .students(teacherStudents)
+                .build();
+        teacherRepository.save(newTeacher);
 
-        return modelMapper.map(dbTeacher , TeacherResponse.class);
+        return modelMapper.map(newTeacher, TeacherResponse.class);
     }
+
+    @Override
+    public Long delete(Long id) {
+        Teacher dbTeacher = teacherRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException(Teacher.class, id,
+                        ExceptionCode.TEACHER_CLASS_NOT_FOUND.getCode()));
+        teacherRepository.delete(dbTeacher);
+        return dbTeacher.getId();
+    }
+
+
 }

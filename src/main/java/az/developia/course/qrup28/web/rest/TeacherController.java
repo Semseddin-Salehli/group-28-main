@@ -26,7 +26,12 @@ public class TeacherController {
     }
 
     @PutMapping("/{id}")
-    public TeacherResponse update (@PathVariable Long id , @RequestBody TeacherRequest request) {
-        return teacherService.update(id , request);
+    public TeacherResponse update(@PathVariable Long id, @RequestBody TeacherRequest request) {
+        return teacherService.update(id, request);
+    }
+
+    @DeleteMapping("/{id}")
+    public Long delete(@PathVariable Long id) {
+       return teacherService.delete(id);
     }
 }

@@ -5,3 +5,7 @@ databaseChangeLog:
       file: db/changelog/v1/create-series.yaml
   - include:
       file: db/changelog/v1/create-student.yaml
+  - include:
+      file: db/changelog/v1/create-teacher-table.yaml
+  - include:
+      file: db/changelog/v1/create-teachers-students-table.yaml

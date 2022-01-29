@@ -1,7 +1,10 @@
 package az.developia.course.qrup28.model;
 
 import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.FieldDefaults;
 
@@ -12,6 +15,9 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "teacher")
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class Teacher {
 
@@ -21,8 +27,10 @@ public class Teacher {
     String name;
     String surname;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "teacher_students" , joinColumns = @JoinColumn(name = "student_id") ,
-            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    @ManyToMany(cascade = {CascadeType.PERSIST,
+            CascadeType.MERGE}
+    )
+    @JoinTable(name = "teachers_students", joinColumns = @JoinColumn(name = "teacher_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "student_id", referencedColumnName = "id"))
     List<Student> students;
 }
