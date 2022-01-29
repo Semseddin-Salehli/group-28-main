@@ -9,7 +9,7 @@ import az.developia.course.qrup28.model.Series;
 import az.developia.course.qrup28.model.Student;
 import az.developia.course.qrup28.repository.SchoolClassRepository;
 import az.developia.course.qrup28.repository.StudentRepository;
-import az.developia.course.qrup28.service.StudentServiceJpa;
+import az.developia.course.qrup28.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-public class StudentServiceJpaImpl implements StudentServiceJpa {
+public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
     private final ModelMapper modelMapper;
     private final SchoolClassRepository classRepository;

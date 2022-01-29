@@ -2,12 +2,19 @@ package az.developia.course.qrup28.web.rest;
 
 
 import az.developia.course.qrup28.dto.request.StudentRequest;
-import az.developia.course.qrup28.repository.StudentRepository;
-import az.developia.course.qrup28.service.StudentServiceJpa;
+import az.developia.course.qrup28.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.*;
 import az.developia.course.qrup28.dto.response.StudentResponse;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
@@ -18,8 +25,7 @@ import java.util.List;
 @Validated
 @RequestMapping("/student")
 public class StudentController {
-    private final StudentServiceJpa studentService;
-    private final StudentRepository repository;
+    private final StudentService studentService;
 
     @GetMapping
     public List<StudentResponse> getStudentList() {

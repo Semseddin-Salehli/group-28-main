@@ -5,7 +5,7 @@ import az.developia.course.qrup28.dto.response.StudentResponse;
 
 import java.util.List;
 
-public interface StudentServiceJpa {
+public interface StudentService {
 
     List<StudentResponse> findAll();
 
