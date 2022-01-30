@@ -1,0 +1,31 @@
+databaseChangeLog:
+  - changeSet:
+      id: create-series-table
+      author: Semseddin
+      changes:
+        - createTable:
+            schemaName: qrup28
+            tableName: series
+
+            columns:
+              - column:
+                  name: id
+                  type: int
+              - column:
+                  name: code
+                  type: varchar(50)
+        - addPrimaryKey:
+            columnNames: id
+            constraintName: pk_series
+            schemaName: qrup28
+            tableName: series
+            validate: true
+        - addAutoIncrement:
+            columnDataType: int
+            columnName: id
+            defaultOnNull: false
+            generationType: ALWAYS
+            incrementBy: 1
+            schemaName: qrup28
+            startWith: 1
+            tableName: series

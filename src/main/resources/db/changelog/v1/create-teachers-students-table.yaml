@@ -1,0 +1,23 @@
+databaseChangeLog:
+  - changeSet:
+      id: 20220129-create-teachers-students-table
+      author: Semseddin
+      changes:
+        - createTable:
+            tableName: teachers_students
+            columns:
+              - column:
+                  - name: teacher_id
+                  - type: int
+                  - constraints:
+                      - nullable: false
+                      - foreignKeyName: teacher_fk
+                      - references: teacher(id)
+              - column:
+                  - name: student_id
+                  - type: int
+                  - constraints:
+                      - nullable: false
+                      - foreignKeyName: student_fk
+                      - references: student(id)
+
