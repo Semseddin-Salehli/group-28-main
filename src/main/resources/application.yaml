@@ -4,10 +4,13 @@ server:
     context-path: /qrup28
 
 spring:
+  cloud:
+    compatibility-verifier:
+      enabled : false
   datasource:
     url: jdbc:mysql://localhost:3306/qrup28
     username: root
-    password: Alishov636590
+    password: 12345678
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -15,3 +18,6 @@ spring:
       ddl-auto: none
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
+
+fakeApi :
+  url : https://jsonplaceholder.typicode.com
