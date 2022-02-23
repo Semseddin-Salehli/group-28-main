@@ -6,6 +6,7 @@ import az.developia.course.qrup28.service.TeacherService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -26,12 +27,12 @@ public class TeacherController {
     }
 
     @PutMapping("/{id}")
-    public TeacherResponse update(@PathVariable Long id, @RequestBody TeacherRequest request) {
+    public TeacherResponse update(@PathVariable @Positive Long id, @RequestBody TeacherRequest request) {
         return teacherService.update(id, request);
     }
 
     @DeleteMapping("/{id}")
-    public Long delete(@PathVariable Long id) {
+    public Long delete(@PathVariable @Positive Long id) {
        return teacherService.delete(id);
     }
 }

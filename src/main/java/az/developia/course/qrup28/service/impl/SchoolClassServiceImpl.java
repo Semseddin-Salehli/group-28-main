@@ -9,6 +9,7 @@ import az.developia.course.qrup28.repository.SchoolClassRepository;
 import az.developia.course.qrup28.service.SchoolClassService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

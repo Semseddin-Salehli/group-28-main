@@ -3,6 +3,7 @@ package az.developia.course.qrup28.exception;
 import az.developia.course.qrup28.dto.response.ErrorResponse;
 import az.developia.course.qrup28.enums.ExceptionCode;
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
@@ -35,5 +36,14 @@ public class GlobalExceptionHandler {
                 .build();
     }
 
-
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ErrorResponse handling(MethodArgumentNotValidException exception, WebRequest request) {
+        return ErrorResponse.builder()
+                .code(HttpStatus.BAD_REQUEST.value())
+                .path(request.getContextPath())
+                .message(exception.getMessage())
+                .errorCode(ExceptionCode.VALIDATION_EXCEPTION.getCode())
+                .build();
+    }
 }

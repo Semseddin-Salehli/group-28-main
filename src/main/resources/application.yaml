@@ -6,11 +6,11 @@ server:
 spring:
   cloud:
     compatibility-verifier:
-      enabled : false
+      enabled: false
   datasource:
     url: jdbc:mysql://localhost:3306/qrup28
     username: root
-    password: 12345678
+    password: Alishov636590
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     show-sql: true
@@ -19,5 +19,5 @@ spring:
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
 
-fakeApi :
-  url : https://jsonplaceholder.typicode.com
+fakeApi:
+  url: https://jsonplaceholder.typicode.com

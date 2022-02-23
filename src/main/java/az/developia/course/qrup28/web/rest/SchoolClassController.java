@@ -5,13 +5,17 @@ import az.developia.course.qrup28.dto.request.SchoolClassRequest;
 import az.developia.course.qrup28.dto.response.SchoolClassResponse;
 import az.developia.course.qrup28.service.SchoolClassService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/class")
+@Validated
 public class SchoolClassController {
 
     private final SchoolClassService schoolClassService;
@@ -22,7 +26,7 @@ public class SchoolClassController {
     }
 
     @GetMapping("/{id}")
-    public SchoolClassResponse getById(@PathVariable Long id) {
+    public SchoolClassResponse getById(@PathVariable @Positive Long id) {
         return schoolClassService.getById(id);
     }
 
@@ -32,8 +36,8 @@ public class SchoolClassController {
     }
 
     @PutMapping("/{id}")
-    public SchoolClassResponse update (@PathVariable Long id , @RequestBody SchoolClassRequest request) {
-        return schoolClassService.update(id , request);
+    public SchoolClassResponse update(@PathVariable Long id, @RequestBody SchoolClassRequest request) {
+        return schoolClassService.update(id, request);
     }
 
     @DeleteMapping("/{id}")
