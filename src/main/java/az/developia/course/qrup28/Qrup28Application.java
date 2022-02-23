@@ -11,8 +11,6 @@ public class Qrup28Application {
 
     public static void main(String[] args) {
         SpringApplication.run(Qrup28Application.class, args);
-
-
     }
 
 }

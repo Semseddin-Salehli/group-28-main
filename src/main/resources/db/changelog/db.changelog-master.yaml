@@ -9,3 +9,5 @@ databaseChangeLog:
       file: db/changelog/v1/create-teacher-table.yaml
   - include:
       file: db/changelog/v1/create-teachers-students-table.yaml
+  - include:
+      file: db/changelog/v1/create-user.yaml

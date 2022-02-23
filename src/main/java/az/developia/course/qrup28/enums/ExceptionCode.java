@@ -4,7 +4,8 @@ public enum ExceptionCode {
     STUDENT_NOT_FOUND_EXCEPTION(100),
     VALIDATION_EXCEPTION(101),
     STUDENT_CLASS_NOT_FOUND(102),
-    TEACHER_CLASS_NOT_FOUND(103);
+    USER_NOT_FOUND(103),
+    TEACHER_CLASS_NOT_FOUND(104);
 
     private final int code;
 

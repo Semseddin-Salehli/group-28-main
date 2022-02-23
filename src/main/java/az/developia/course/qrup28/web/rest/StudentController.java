@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import javax.validation.constraints.Min;
+import javax.validation.constraints.Positive;
 import java.util.List;
 
 @RestController
@@ -38,18 +39,19 @@ public class StudentController {
     }
 
     @GetMapping("/{id}")
-    public StudentResponse getStudentById(@PathVariable @Min(value = 0, message = "İd 0 dan böyük olmalıdır") Long id) {
+    public StudentResponse getStudentById(@PathVariable @Positive Long id) {
         return studentService.getStudentById(id);
     }
 
 
     @PutMapping
-    public StudentResponse updateStudent(@RequestBody @Valid StudentRequest studentRequest, @RequestParam @Min(value = 0) Long studentId) {
+    public StudentResponse updateStudent(@RequestBody @Valid StudentRequest studentRequest,
+                                         @RequestParam @Positive Long studentId) {
         return studentService.updateStudent(studentRequest, studentId);
     }
 
     @DeleteMapping("/{studentId}")
-    public StudentResponse deleteStudent(@PathVariable @Min(value = 0) Long studentId) {
+    public StudentResponse deleteStudent(@PathVariable @Positive Long studentId) {
         return studentService.deleteStudent(studentId);
     }
 }

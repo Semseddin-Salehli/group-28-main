@@ -13,4 +13,9 @@ public class NotFoundException extends RuntimeException {
         super(clazz.getSimpleName() + " not found with id: " + id);
         this.code = code;
     }
+
+    public NotFoundException(Class clazz, String value, Integer code) {
+        super(clazz.getSimpleName() + " not found with value: " + value);
+        this.code = code;
+    }
 }
