@@ -1,5 +1,6 @@
 package az.developia.course.qrup28.service.impl;
 
+import az.developia.course.qrup28.configuration.AppProperties;
 import az.developia.course.qrup28.dto.response.feign.Comments;
 import az.developia.course.qrup28.feign.client.CommentsFeign;
 import az.developia.course.qrup28.service.CommentsServise;
