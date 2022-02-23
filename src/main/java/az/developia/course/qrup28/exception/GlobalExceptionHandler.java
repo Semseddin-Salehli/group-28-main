@@ -43,7 +43,6 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(MethodArgumentNotValidException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     public ErrorResponse handling(MethodArgumentNotValidException exception, WebRequest request) {
-        log.error("Validation exception {}",exception.getMessage());
         return ErrorResponse.builder()
                 .code(HttpStatus.BAD_REQUEST.value())
                 .path(request.getContextPath())

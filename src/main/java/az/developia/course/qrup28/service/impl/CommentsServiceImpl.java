@@ -18,7 +18,6 @@ public class CommentsServiceImpl implements CommentsServise {
 
     @Override
     public List<Comments> getAllComments() {
-        log.warn("called getAllComments service");
         return feign.getAllComments();
     }
 }
