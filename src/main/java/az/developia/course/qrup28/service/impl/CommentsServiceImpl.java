@@ -11,7 +11,6 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @Service
-@Slf4j
 public class CommentsServiceImpl implements CommentsServise {
 
     private final CommentsFeign feign;

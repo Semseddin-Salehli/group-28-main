@@ -24,13 +24,4 @@ public class SchoolClass {
 
     @OneToMany(mappedBy = "schoolClass")
     private List<Student> students;
-
-    @Override
-    public String toString() {
-        return "SchoolClass{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", students=" + students +
-                '}';
-    }
 }
