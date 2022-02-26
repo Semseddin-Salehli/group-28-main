@@ -17,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.Positive;
 import java.util.List;
 
@@ -30,7 +29,7 @@ public class StudentController {
 
     @GetMapping
     public List<StudentResponse> getStudentList() {
-        return studentService.findAll();
+        return studentService.getStudents();
     }
 
     @PostMapping()

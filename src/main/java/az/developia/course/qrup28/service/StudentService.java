@@ -7,7 +7,7 @@ import az.developia.course.qrup28.dto.response.StudentResponse;
 import java.util.List;
 
 public interface StudentService {
-    List<StudentResponse> findAll();
+    List<StudentResponse> getStudents();
 
     Long addStudent(StudentRequest studentRequest);
 

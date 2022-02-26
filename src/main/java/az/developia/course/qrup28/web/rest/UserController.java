@@ -5,6 +5,7 @@ import az.developia.course.qrup28.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,8 +29,8 @@ public class UserController {
         userService.createUser(request);
     }
 
-    @PutMapping
-    public void update(@RequestBody @Valid UserRequest request, String username) {
+    @PutMapping("/{username}")
+    public void update(@RequestBody @Valid UserRequest request, @PathVariable String username) {
         userService.updateUser(request, username);
     }
 }

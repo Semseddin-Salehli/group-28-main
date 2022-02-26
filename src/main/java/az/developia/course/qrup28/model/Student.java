@@ -46,7 +46,7 @@ public class Student {
     })
     private SchoolClass schoolClass;
 
-    @ManyToMany(mappedBy = "students", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "students")
     private List<Teacher> teachers;
 }
 
