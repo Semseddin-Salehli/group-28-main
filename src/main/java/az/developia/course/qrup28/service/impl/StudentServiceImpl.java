@@ -25,13 +25,13 @@ public class StudentServiceImpl implements StudentService {
     private final SchoolClassRepository classRepository;
 
     @Override
-    public List<StudentResponse> findAll() {
+    public List<StudentResponse> getAll() {
         return studentRepository.findAll().stream().map(student -> modelMapper
                 .map(student, StudentResponse.class)).collect(Collectors.toList());
     }
 
     @Override
-    public Long addStudent(StudentRequest studentRequest) {
+    public Long add(StudentRequest studentRequest) {
         SchoolClass schoolClass = classRepository.findById(studentRequest.getSchoolClassId())
                 .orElseThrow(() -> new NotFoundException(SchoolClass.class, studentRequest.getSchoolClassId(),
                         ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));
@@ -48,7 +48,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponse getStudentById(Long id) {
+    public StudentResponse getById(Long id) {
         return studentRepository.findById(id)
                 .map(student -> modelMapper.map(student, StudentResponse.class))
                 .orElseThrow(() -> new NotFoundException(Student.class, id,
@@ -56,7 +56,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponse updateStudent(StudentRequest studentRequest, Long studentId) {
+    public StudentResponse update(StudentRequest studentRequest, Long studentId) {
         SchoolClass schoolClass = classRepository.findById(studentRequest.getSchoolClassId())
                 .orElseThrow(() -> new NotFoundException(SchoolClass.class, studentRequest.getSchoolClassId(),
                         ExceptionCode.STUDENT_CLASS_NOT_FOUND.getCode()));
@@ -81,7 +81,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponse deleteStudent(Long studentId) {
+    public StudentResponse delete(Long studentId) {
         Student dbStudent = studentRepository.findById(studentId)
                 .orElseThrow(() -> new NotFoundException(Student.class, studentId,
                         ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));

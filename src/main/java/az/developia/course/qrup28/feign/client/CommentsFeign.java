@@ -5,7 +5,7 @@ import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import java.util.List;
 
-@FeignClient(name = "myFeign3" , url = "${fakeApi.url}")
+@FeignClient(name = "myFeign3" , url = "${fake.url}")
 public interface CommentsFeign {
 
     @GetMapping("comments")

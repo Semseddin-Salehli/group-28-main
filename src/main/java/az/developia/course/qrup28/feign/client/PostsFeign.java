@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@FeignClient(name = "myFeign2" , url = "${fakeApi.url}")
+@FeignClient(name = "myFeign2" , url = "${fake.url}")
 public interface PostsFeign {
 
     @GetMapping("/posts")

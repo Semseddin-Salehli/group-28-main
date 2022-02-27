@@ -5,7 +5,7 @@ import az.developia.course.qrup28.dto.response.feign.OtherUser;
 import org.springframework.cloud.openfeign.FeignClient;
 import org.springframework.web.bind.annotation.GetMapping;
 
-@FeignClient(name = "myFeign" , url = "${fakeApi.url}")
+@FeignClient(name = "myFeign" , url = "${fake.url}")
 public interface OtherUserFeign {
 
     @GetMapping("/users")

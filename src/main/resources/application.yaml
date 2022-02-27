@@ -19,5 +19,8 @@ spring:
   liquibase:
     change-log: db/changelog/db.changelog-master.yaml
 
-fakeApi:
+fake:
   url: https://jsonplaceholder.typicode.com
+  type: randomType
+
+
