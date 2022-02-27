@@ -29,28 +29,28 @@ public class StudentController {
 
     @GetMapping
     public List<StudentResponse> getStudentList() {
-        return studentService.getStudents();
+        return studentService.getAll();
     }
 
     @PostMapping()
     public Long addStudent(@RequestBody @Valid StudentRequest studentRequest) {
-        return studentService.addStudent(studentRequest);
+        return studentService.add(studentRequest);
     }
 
     @GetMapping("/{id}")
     public StudentResponse getStudentById(@PathVariable @Positive Long id) {
-        return studentService.getStudentById(id);
+        return studentService.getById(id);
     }
 
 
     @PutMapping
     public StudentResponse updateStudent(@RequestBody @Valid StudentRequest studentRequest,
                                          @RequestParam @Positive Long studentId) {
-        return studentService.updateStudent(studentRequest, studentId);
+        return studentService.update(studentRequest, studentId);
     }
 
     @DeleteMapping("/{studentId}")
     public StudentResponse deleteStudent(@PathVariable @Positive Long studentId) {
-        return studentService.deleteStudent(studentId);
+        return studentService.delete(studentId);
     }
 }

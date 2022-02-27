@@ -7,13 +7,13 @@ import az.developia.course.qrup28.dto.response.StudentResponse;
 import java.util.List;
 
 public interface StudentService {
-    List<StudentResponse> getStudents();
+    List<StudentResponse> getAll();
 
-    Long addStudent(StudentRequest studentRequest);
+    Long add(StudentRequest studentRequest);
 
-    StudentResponse getStudentById(Long id);
+    StudentResponse getById(Long id);
 
-    StudentResponse updateStudent(StudentRequest studentRequest, Long studentId);
+    StudentResponse update(StudentRequest studentRequest, Long studentId);
 
-    StudentResponse deleteStudent(Long studentId);
+    StudentResponse delete(Long studentId);
 }
