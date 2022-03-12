@@ -47,9 +47,7 @@ class SchoolClassServiceImplTest {
 
     @Test
     public void givenSchoolClassResponseThenEverythingSuccessfully() {
-
         //Arrange
-
         when(modelMapper.map(any(), any()))
                 .thenReturn(schoolClassResponse);
 

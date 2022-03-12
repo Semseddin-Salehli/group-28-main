@@ -1,6 +1,8 @@
 package az.developia.course.qrup28.model;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Entity;
@@ -15,6 +17,8 @@ import java.util.List;
 @Table(name = "class")
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class SchoolClass {
 
     @Id
