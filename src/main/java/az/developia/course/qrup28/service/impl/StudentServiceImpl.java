@@ -65,19 +65,22 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(() -> new NotFoundException(Student.class, studentId,
                         ExceptionCode.STUDENT_NOT_FOUND_EXCEPTION.getCode()));
 
-        Student newStudent = modelMapper.map(studentRequest, Student.class);
-
         Series dbSeries = dbStudent.getSeries();
         modelMapper.map(studentRequest.getSeries(), dbSeries);
 
-        newStudent.setSeries(dbSeries);
-        newStudent.setId(studentId);
-        newStudent.setSchoolClass(schoolClass);
-        modelMapper.map(newStudent, dbStudent);
+        Student newStudent = Student.builder()
+                .id(studentId)
+                .name(studentRequest.getName())
+                .surname(studentRequest.getSurname())
+                .phone(studentRequest.getPhone())
+                .address(studentRequest.getAddress())
+                .age(studentRequest.getAge())
+                .series(dbSeries)
+                .schoolClass(schoolClass)
+                .build();
 
-        studentRepository.save(dbStudent);
 
-        return modelMapper.map(dbStudent, StudentResponse.class);
+        return modelMapper.map(studentRepository.save(newStudent), StudentResponse.class);
     }
 
     @Override
