@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/feign/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/class").hasAuthority(READ.getPermissionName())
                 .antMatchers(HttpMethod.POST, "/class").hasAuthority(WRITE.getPermissionName())
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/users/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
