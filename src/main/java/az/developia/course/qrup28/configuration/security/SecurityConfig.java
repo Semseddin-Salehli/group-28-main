@@ -24,13 +24,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.cors().and()
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/feign/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/class").hasAuthority(READ.getPermissionName())
                 .antMatchers(HttpMethod.POST, "/class").hasAuthority(WRITE.getPermissionName())
-                .antMatchers("/user/**").permitAll()
+                .antMatchers("/users/**").permitAll()
                 .anyRequest()
                 .authenticated()
                 .and()
