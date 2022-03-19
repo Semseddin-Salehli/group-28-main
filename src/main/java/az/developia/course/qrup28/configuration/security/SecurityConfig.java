@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static az.developia.course.qrup28.enums.ApplicationPermission.*;
+import static az.developia.course.qrup28.enums.ApplicationRoles.*;
 
 @Configuration
 @EnableWebSecurity
@@ -28,8 +28,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/feign/**").permitAll()
-                .antMatchers(HttpMethod.GET, "/class").hasAuthority(READ.getPermissionName())
-                .antMatchers(HttpMethod.POST, "/class").hasAuthority(WRITE.getPermissionName())
+                .antMatchers(HttpMethod.GET, "/class")
+                .hasAnyAuthority(USER.getPermissions(), ADMIN.getPermissions())
+                .antMatchers(HttpMethod.POST, "/class").hasAuthority(ADMIN.getPermissions())
                 .antMatchers("/users/**").permitAll()
                 .anyRequest()
                 .authenticated()
