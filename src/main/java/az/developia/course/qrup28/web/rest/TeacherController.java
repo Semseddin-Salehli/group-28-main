@@ -4,6 +4,7 @@ import az.developia.course.qrup28.dto.request.TeacherRequest;
 import az.developia.course.qrup28.dto.response.TeacherResponse;
 import az.developia.course.qrup28.service.TeacherService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.constraints.Positive;
@@ -11,7 +12,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/teacher")
+@RequestMapping("/teachers")
+@Validated
 public class TeacherController {
 
     private final TeacherService teacherService;

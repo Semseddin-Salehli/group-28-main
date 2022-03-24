@@ -1,6 +1,5 @@
 package az.developia.course.qrup28.configuration.security;
 
-import az.developia.course.qrup28.enums.ApplicationPermission;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +12,8 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import static az.developia.course.qrup28.enums.ApplicationRoles.*;
+import static az.developia.course.qrup28.enums.ApplicationRoles.ADMIN;
+import static az.developia.course.qrup28.enums.ApplicationRoles.USER;
 
 @Configuration
 @EnableWebSecurity
