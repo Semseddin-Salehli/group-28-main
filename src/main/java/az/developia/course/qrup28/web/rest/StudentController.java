@@ -2,10 +2,10 @@ package az.developia.course.qrup28.web.rest;
 
 
 import az.developia.course.qrup28.dto.request.StudentRequest;
+import az.developia.course.qrup28.dto.response.StudentResponse;
 import az.developia.course.qrup28.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.validation.annotation.Validated;
-import az.developia.course.qrup28.dto.response.StudentResponse;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,7 +23,7 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @Validated
-@RequestMapping("/student")
+@RequestMapping("/students")
 public class StudentController {
     private final StudentService studentService;
 

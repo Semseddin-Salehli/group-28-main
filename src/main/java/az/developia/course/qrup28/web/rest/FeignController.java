@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/feign")
+@RequestMapping("/feigns")
 @RequiredArgsConstructor
 public class FeignController {
 
