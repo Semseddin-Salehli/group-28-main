@@ -20,7 +20,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/class")
+@RequestMapping("/classes")
 @Validated
 public class SchoolClassController {
 
