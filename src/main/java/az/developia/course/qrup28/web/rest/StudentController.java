@@ -32,7 +32,12 @@ public class StudentController {
         return studentService.getAll();
     }
 
-    @PostMapping()
+    @GetMapping("/class/{classId}")
+    public List<StudentResponse> getStudentListByClassId(@PathVariable @Positive Long classId) {
+        return studentService.getAllByClassId(classId);
+    }
+
+    @PostMapping
     public Long addStudent(@RequestBody @Valid StudentRequest studentRequest) {
         return studentService.add(studentRequest);
     }
