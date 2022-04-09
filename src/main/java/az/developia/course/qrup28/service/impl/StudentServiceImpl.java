@@ -31,6 +31,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public List<StudentResponse> getAllByClassId(Long classId) {
+        SchoolClass dbClass = classRepository.findById(classId)
+                .orElseThrow(() -> new NotFoundException(SchoolClass.class, classId,
+                        ExceptionCode.STUDENT_CLASS_NOT_FOUND.getCode()));
+
+        return studentRepository.findAllBySchoolClass(dbClass).stream()
+                .map(student -> modelMapper.map(student, StudentResponse.class))
+                .collect(Collectors.toList());
+    }
+
+    @Override
     public Long add(StudentRequest studentRequest) {
         SchoolClass schoolClass = classRepository.findById(studentRequest.getSchoolClassId())
                 .orElseThrow(() -> new NotFoundException(SchoolClass.class, studentRequest.getSchoolClassId(),
