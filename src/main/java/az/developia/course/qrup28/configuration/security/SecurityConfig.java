@@ -28,6 +28,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers("/feigns/**").permitAll()
+                .antMatchers("/task/**").permitAll()
                 .antMatchers(HttpMethod.GET, "/classes")
                 .hasAnyAuthority(USER.getPermissions(), ADMIN.getPermissions())
                 .antMatchers(HttpMethod.POST, "/classes").hasAuthority(ADMIN.getPermissions())

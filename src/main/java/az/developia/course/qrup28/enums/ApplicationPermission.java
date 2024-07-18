@@ -1,7 +1,7 @@
 package az.developia.course.qrup28.enums;
 
 public enum ApplicationPermission {
-    READ("read"),
+    R3EAD("read"),
     WRITE("write");
 
     private final String permissionName;
